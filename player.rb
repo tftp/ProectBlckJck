@@ -12,7 +12,12 @@ class Player
 
   def initialize
     @cards = []
-    @bank
+    @bank = 100
+    @points = 0
+  end
+
+  def points_of_cards
+    @cards.each {|card| @point += card.value}
   end
 
 end
