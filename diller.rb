@@ -9,6 +9,7 @@ class Diller
   attr_accessor :bank, :cards
 
   def initialize
+    @name = 'Computer'
     @cards = []
     @bank = 100
     @points = 0
