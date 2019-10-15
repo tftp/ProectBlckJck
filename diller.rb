@@ -11,6 +11,7 @@ class Diller
   def initialize
     @cards = []
     @bank = 100
+    @points = 0
   end
 
 end
