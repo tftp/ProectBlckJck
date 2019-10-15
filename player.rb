@@ -30,4 +30,8 @@ class Player
       @cards << card
     end
 
+    def change_bank(value)
+      @bank += value
+    end
+
 end
