@@ -20,4 +20,8 @@ class Player
     @cards.each {|card| @point += card.value}
   end
 
+    def add_card(card)
+      @cards << card
+    end
+
 end
