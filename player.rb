@@ -10,14 +10,20 @@ class Player
 # когда карты открываются игрок видит карты диллера и их сумму очков и результат игры
   attr_accessor :bank, :cards
 
-  def initialize
+  def initialize(name)
+    @name = name
     @cards = []
     @bank = 100
     @points = 0
   end
 
   def points_of_cards
-    @cards.each {|card| @point += card.value}
+    print "Cards of player #{self.name}: "
+    @cards.each do |card|
+      @point += card.value
+      print " #{card.name} "
+    end
+    puts
   end
 
     def add_card(card)
