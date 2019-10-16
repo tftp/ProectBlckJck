@@ -22,5 +22,9 @@ module CardOption
   def select_card
     @cards[rand(0..52)]
   end
-  
+
+  def mixed_cards
+    @cards.each {|card| card.busy = false}
+  end
+
 end
