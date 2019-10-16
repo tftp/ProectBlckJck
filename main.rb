@@ -12,11 +12,15 @@
 require_relative 'card'
 require_relative 'player'
 require_relative 'diller'
+require_relative 'card_options'
+
+include CardOption
 
 RATE = -10
 
 @cards = []
 @bank = 0
+
 
 print 'Желаете сыграть, введите своё имя: '
 name = gets.chomp
@@ -24,9 +28,14 @@ name = gets.chomp
 @player = Player.new(name)
 # инициализация диллера
 @dealer = Diller.new
+# создание карточной колоды
+create_deck_of_cards
 # начало игры, банк игры наполняется ставками игрока и диллера
-
+@bank -= 2 * RATE
 # банк игрока и банк диллера уменьшается
+@player.change_bank(RATE)
+
+# размешивание карт?
 # игрок получает 2 карты, диллер получает 2 карты
 # меню выбора игрока: пропустить, добавить, открыть
 # ход диллера: пропустить, добавить
@@ -35,21 +44,3 @@ name = gets.chomp
 # предложение сыграть ещё, выход
 
 # создание колоды карт
-def create_deck_of_cards
-  suit = [9824, 9827, 9829, 9830]
-  4.times do |suit_number|
-    suit_str = "" << suit[suit_number]
-    2.upto(10) do |number|
-      name = number.to_s + suit_str
-      @cards << Card.new(name, number)
-    end
-    name = 'J' + suit_str
-    @cards << Card.new(name, 10)
-    name = 'Q' + suit_str
-    @cards << Card.new(name, 10)
-    name = 'K' + suit_str
-    @cards << Card.new(name, 10)
-    name = 'T' + suit_str
-    @cards << Card.new(name, 11)
-  end
-end
