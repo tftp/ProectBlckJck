@@ -9,7 +9,13 @@ module MenuProcessing
 
   def choise_of_dealer
     count_of_cards = @dealer.cards.count
-    @dealer.add_card if @dealer.points < 17 && count_of_cards < 3
+    if @dealer.points < 17 && count_of_cards < 3
+      @dealer.add_card(select_card)
+      puts "\nИгрок #{@dealer.name} взял карту."
+      @player.points_of_cards SHOW
+      @dealer.points_of_cards HIDE
+    end
+
   end
 
 end
