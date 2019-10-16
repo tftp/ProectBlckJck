@@ -15,7 +15,19 @@ module MenuProcessing
       @player.points_of_cards SHOW
       @dealer.points_of_cards HIDE
     end
+  end
 
+  def open_cards
+    @player.points_of_cards SHOW
+    @dealer.points_of_cards SHOW
+    dealer_win if @player.points > 21 && @dealer.points <= 21
+    plaer_win if @dealer.points > 21 && @player.points <= 21
+    game_lose if @dealer.points > 21 && @player.points > 21
+    if @dealer.points <= 21 && @player.points <= 21
+      dealer_win if @dealer.points > @player.points
+      player_win if @dealer.points < @player.points
+      game_tie if @dealer.points == @player.points
+    end
   end
 
 end
