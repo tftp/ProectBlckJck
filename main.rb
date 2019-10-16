@@ -44,6 +44,8 @@ create_deck_of_cards
 @player.add_card select_card
 @dealer.add_card select_card
 @dealer.add_card select_card
+# player видит свои карты
+@player.points_of_cards
 # меню выбора игрока: пропустить, добавить, открыть
 # ход диллера: пропустить, добавить
 # открытие карт

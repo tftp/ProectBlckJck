@@ -1,21 +1,21 @@
 module GameMechanics
 
   def points_of_cards
-    print "Cards of player #{self.name}: "
+    print "Карты игрока #{self.name}: "
     @cards.each do |card|
-      @point += card.value
+      @points += card.value
       print " #{card.name} "
     end
-    puts
+    puts "Очков: #{self.points}"
   end
 
-    def add_card(card)
-      card.busy = true
-      @cards << card
-    end
+  def add_card(card)
+    card.busy = true
+    @cards << card
+  end
 
-    def change_bank(value)
-      @bank += value
-    end
+  def change_bank(value)
+    @bank += value
+  end
 
 end
