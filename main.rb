@@ -10,6 +10,7 @@
 # сумма из банка игры переходит к выигравшему
 #
 require_relative 'card'
+require_relative 'game_mechanics'
 require_relative 'player'
 require_relative 'diller'
 require_relative 'card_options'
@@ -34,6 +35,7 @@ create_deck_of_cards
 @bank -= 2 * RATE
 # банк игрока и банк диллера уменьшается
 @player.change_bank(RATE)
+@dealer.change_bank(RATE)
 
 # размешивание карт?
 # игрок получает 2 карты, диллер получает 2 карты
