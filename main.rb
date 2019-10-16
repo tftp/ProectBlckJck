@@ -14,8 +14,10 @@ require_relative 'game_mechanics'
 require_relative 'player'
 require_relative 'diller'
 require_relative 'card_options'
+require_relative 'menu_processing'
 
 include CardOption
+include MenuProcessing
 
 RATE = -10
 SHOW = true
@@ -51,8 +53,23 @@ create_deck_of_cards
 @dealer.points_of_cards HIDE
 # меню выбора игрока: пропустить, добавить, открыть
 # ход диллера: пропустить, добавить
+loop do
+    menu_for_player
+    case gets.chomp
+    when '1'
+      choise_of_dealer
+    when '2'
+      @player.add_card select_card
+      choise_of_dealer
+      break
+    when '3'
+      break
+    end
+end
+
 # открытие карт
 # подсчет результатов, объявление победителя
+puts "Внимание! Результаты!"
 # предложение сыграть ещё, выход
 
 # создание колоды карт
