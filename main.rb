@@ -18,6 +18,8 @@ require_relative 'card_options'
 include CardOption
 
 RATE = -10
+SHOW = true
+HIDE = false
 
 @cards = []
 @bank = 0
@@ -45,7 +47,8 @@ create_deck_of_cards
 @dealer.add_card select_card
 @dealer.add_card select_card
 # player видит свои карты
-@player.points_of_cards
+@player.points_of_cards SHOW
+@dealer.points_of_cards HIDE
 # меню выбора игрока: пропустить, добавить, открыть
 # ход диллера: пропустить, добавить
 # открытие карт
