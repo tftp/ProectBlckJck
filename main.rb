@@ -38,7 +38,12 @@ create_deck_of_cards
 @dealer.change_bank(RATE)
 
 # размешивание карт?
+
 # игрок получает 2 карты, диллер получает 2 карты
+@player.add_card select_card
+@player.add_card select_card
+@dealer.add_card select_card
+@dealer.add_card select_card
 # меню выбора игрока: пропустить, добавить, открыть
 # ход диллера: пропустить, добавить
 # открытие карт
