@@ -1,23 +1,11 @@
+# frozen_string_literal: true
 
-# интерактивный инструмент
-
-# игра начинается с раздачи  карт
-# есть банк
-# есть карты
-# выигрывает игрок у которого сумма очков ближе к 21
-# если сумма очков более 21 то он проиграл
-# если сумма очков равна, то ничья, деньги возвращаются игрокам
-# сумма из банка игры переходит к выигравшему
-#
 require_relative 'card'
 require_relative 'game_mechanics'
 require_relative 'player'
 require_relative 'diller'
 require_relative 'card_options'
 require_relative 'menu_processing'
-
-include CardOption
-include MenuProcessing
 
 RATE = -10
 SHOW = true
@@ -26,39 +14,37 @@ HIDE = false
 @cards = []
 @bank = 0
 
-
 print 'Желаешь сыграть, странник? Введи своё имя: '
 name = gets.chomp
-# инициализация игрока
+# initialization of the player
 @player = Player.new(name)
-# инициализация диллера
+# initialization of the dealer
 @dealer = Diller.new
-# создание карточной колоды
+# creating a card deck
 create_deck_of_cards
-# начало игры
+# game start
 loop do
-  # проверяем игроков на туз в рукаве
+  # check players for
   @player.check
   @dealer.check
-  # банк игры наполняется ставками игрока и диллера
+  #  the Bank of the game is filled
   @bank -= 2 * RATE
-  # банк игрока и банк диллера уменьшается
+  # the player's Bank and the dealer's Bank decrease
   @player.change_bank(RATE)
   @dealer.change_bank(RATE)
 
-  # размешивание карт?
+  # stirring the cards
   mixed_cards
   processing("\nКарты размешиваются")
-  # игрок получает 2 карты, диллер получает 2 карты
+  # the player gets 2 cards, the dealer gets 2 cards
   @player.add_card select_card
   @player.add_card select_card
   @dealer.add_card select_card
   @dealer.add_card select_card
-  # player видит свои карты
+  # player sees his cards
   @player.points_of_cards SHOW
   @dealer.points_of_cards HIDE
-  # меню выбора игрока: пропустить, добавить, открыть
-  # ход диллера: пропустить, добавить
+  # the selection menu of the player:
   loop do
     menu_for_player
     case gets.chomp
@@ -74,12 +60,11 @@ loop do
     end
   end
 
-  # открытие карт
-  # подсчет результатов, объявление победителя
+  # counting results, announcement of the winner
   processing("\nПосчет результатов")
   puts "\nВнимание! Результаты!"
   open_cards
-  # предложение сыграть ещё, выход
+  # offer to play again, exit
   break if check_end_game?
 end
-puts "Спасибо за игру!"
+puts 'Спасибо за игру!'
