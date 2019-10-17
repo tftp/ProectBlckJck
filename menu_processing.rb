@@ -21,13 +21,29 @@ module MenuProcessing
     @player.points_of_cards SHOW
     @dealer.points_of_cards SHOW
     dealer_win if @player.points > 21 && @dealer.points <= 21
-    plaer_win if @dealer.points > 21 && @player.points <= 21
+    player_win if @dealer.points > 21 && @player.points <= 21
     game_lose if @dealer.points > 21 && @player.points > 21
     if @dealer.points <= 21 && @player.points <= 21
       dealer_win if @dealer.points > @player.points
       player_win if @dealer.points < @player.points
       game_tie if @dealer.points == @player.points
     end
+  end
+  
+  def dealer_win
+  
+  end
+  
+  def player_win
+  
+  end
+  
+  def game_lose
+  
+  end
+  
+  def game_tie
+  
   end
 
 end
