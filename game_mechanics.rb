@@ -28,4 +28,10 @@ module GameMechanics
     end
   end
 
+  def check
+    self.cards = []
+    self.points = 0
+    self.ace = 0
+  end
+
 end

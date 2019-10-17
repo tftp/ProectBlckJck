@@ -35,8 +35,12 @@ name = gets.chomp
 @dealer = Diller.new
 # создание карточной колоды
 create_deck_of_cards
-# начало игры, банк игры наполняется ставками игрока и диллера
+# начало игры
 loop do
+  # проверяем игроков на туз в рукаве
+  @player.check
+  @dealer.check
+  # банк игры наполняется ставками игрока и диллера
   @bank -= 2 * RATE
   # банк игрока и банк диллера уменьшается
   @player.change_bank(RATE)
@@ -65,6 +69,7 @@ loop do
       choise_of_dealer
       break
     when '3'
+      choise_of_dealer
       break
     end
   end
@@ -74,7 +79,7 @@ loop do
   processing("\nПосчет результатов")
   puts "\nВнимание! Результаты!"
   open_cards
-# предложение сыграть ещё, выход
-break unless @player.points.positive? && repeat_game?
+  # предложение сыграть ещё, выход
+  break if check_end_game?
 end
 puts "Спасибо за игру!"

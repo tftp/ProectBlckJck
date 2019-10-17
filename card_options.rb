@@ -20,7 +20,7 @@ module CardOption
   end
 
   def select_card
-    @cards[rand(0..52)]
+    @cards[rand(0..51)]
   end
 
   def mixed_cards

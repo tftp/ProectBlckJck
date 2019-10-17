@@ -14,6 +14,17 @@ module MenuProcessing
     '1' == gets.chomp ? true : false
   end
 
+  def check_end_game?
+    if @dealer.bank.zero?
+      puts "#{@dealer.name}  не может играть. Его банк = #{@dealer.bank}"
+      return true
+    end
+    unless @player.points.positive? && repeat_game?
+      puts "Твой банк = #{@player.bank}"
+      return true
+    end
+  end
+
   def choise_of_dealer
     count_of_cards = @dealer.cards.count
     if @dealer.points < 17 && count_of_cards < 3
