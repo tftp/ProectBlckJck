@@ -27,7 +27,7 @@ HIDE = false
 @bank = 0
 
 
-print 'Желаете сыграть, введите своё имя: '
+print 'Желаешь сыграть, странник? Введи своё имя: '
 name = gets.chomp
 # инициализация игрока
 @player = Player.new(name)
@@ -36,25 +36,26 @@ name = gets.chomp
 # создание карточной колоды
 create_deck_of_cards
 # начало игры, банк игры наполняется ставками игрока и диллера
-@bank -= 2 * RATE
-# банк игрока и банк диллера уменьшается
-@player.change_bank(RATE)
-@dealer.change_bank(RATE)
-
-# размешивание карт?
-mixed_cards
-processing("\nКарты размешиваются")
-# игрок получает 2 карты, диллер получает 2 карты
-@player.add_card select_card
-@player.add_card select_card
-@dealer.add_card select_card
-@dealer.add_card select_card
-# player видит свои карты
-@player.points_of_cards SHOW
-@dealer.points_of_cards HIDE
-# меню выбора игрока: пропустить, добавить, открыть
-# ход диллера: пропустить, добавить
 loop do
+  @bank -= 2 * RATE
+  # банк игрока и банк диллера уменьшается
+  @player.change_bank(RATE)
+  @dealer.change_bank(RATE)
+
+  # размешивание карт?
+  mixed_cards
+  processing("\nКарты размешиваются")
+  # игрок получает 2 карты, диллер получает 2 карты
+  @player.add_card select_card
+  @player.add_card select_card
+  @dealer.add_card select_card
+  @dealer.add_card select_card
+  # player видит свои карты
+  @player.points_of_cards SHOW
+  @dealer.points_of_cards HIDE
+  # меню выбора игрока: пропустить, добавить, открыть
+  # ход диллера: пропустить, добавить
+  loop do
     menu_for_player
     case gets.chomp
     when '1'
@@ -66,13 +67,14 @@ loop do
     when '3'
       break
     end
-end
+  end
 
-# открытие карт
-# подсчет результатов, объявление победителя
-processing("\nПосчет результатов")
-puts "\nВнимание! Результаты!"
-open_cards
+  # открытие карт
+  # подсчет результатов, объявление победителя
+  processing("\nПосчет результатов")
+  puts "\nВнимание! Результаты!"
+  open_cards
 # предложение сыграть ещё, выход
-
-# создание колоды карт
+break unless @player.points.positive? && repeat_game?
+end
+puts "Спасибо за игру!"
