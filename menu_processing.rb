@@ -1,7 +1,7 @@
 module MenuProcessing
 
   def menu_for_player
-    puts 'Сделай правильный выбор!'
+    puts "\nСделай правильный выбор!"
     puts '1 - Пропустить ход'
     puts '2 - Взять карту'
     puts '3 - Открыть карты'
@@ -12,6 +12,7 @@ module MenuProcessing
     if @dealer.points < 17 && count_of_cards < 3
       @dealer.add_card(select_card)
       puts "\nИгрок #{@dealer.name} взял карту."
+      sleep 1
       @player.points_of_cards SHOW
       @dealer.points_of_cards HIDE
     end
@@ -31,31 +32,49 @@ module MenuProcessing
   end
 
   def dealer_win
-  puts "Победил #{@dealer.name}"
-  puts "Банк игрока #{@player.name} = #{@player.bank}"
+  puts "\nПобедил #{@dealer.name}"
+  sleep 1
+  puts "\nБанк игрока #{@player.name} = #{@player.bank}"
   puts "Банк игрока #{@dealer.name} = #{@dealer.bank += @bank}"
   @bank = 0
+  sleep 1
   end
 
   def player_win
-    puts "Победил #{@player.name}"
-    puts "Банк игрока #{@player.name} = #{@player.bank += @bank}"
+    puts "\nПобедил #{@player.name}"
+    sleep 1
+    puts "\nБанк игрока #{@player.name} = #{@player.bank += @bank}"
     puts "Банк игрока #{@dealer.name} = #{@dealer.bank}"
     @bank = 0
+    sleep 1
   end
 
   def game_lose
-    puts "Оба игрока проиграли!"
-    puts "Банк игрока #{@dealer.name} = #{@dealer.bank}"
+    puts "\nОба игрока проиграли!"
+    sleep 1
+    puts "\nБанк игрока #{@dealer.name} = #{@dealer.bank}"
     puts "Банк игрока #{@dealer.name} = #{@dealer.bank}"
     @bank = 0
+    sleep 1
   end
 
   def game_tie
-    puts "Ничья!"
-    puts "Банк игрока #{@dealer.name} = #{@dealer.bank += @bank / 2}"
+    puts "\nНичья!"
+    sleep 1
+    puts "\nБанк игрока #{@dealer.name} = #{@dealer.bank += @bank / 2}"
     puts "Банк игрока #{@dealer.name} = #{@dealer.bank += @bank / 2}"
     @bank = 0
+    sleep 1
+  end
+
+  def processing(sign)
+    print sign
+    40.times do
+      print '.'
+      sleep 0.1
+    end
+    puts
+    puts
   end
 
 end

@@ -1,9 +1,10 @@
 module GameMechanics
 
   def points_of_cards(show)
-    print "Карты игрока #{self.name}: "
-    @cards.each {|card| print " #{show ? card.name : '*'} "}
-    puts "Очков: #{show ? self.points : '*'}"
+    print "\nКарты игрока #{self.name}: "
+    @cards.each {|card| print " #{show ? card.name : '*'}  "}
+    print "Очков: #{show ? self.points : '*' }  "
+    puts "Банк = #{self.bank}"
   end
 
   def add_card(card)

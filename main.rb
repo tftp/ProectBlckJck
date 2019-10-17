@@ -42,7 +42,8 @@ create_deck_of_cards
 @dealer.change_bank(RATE)
 
 # размешивание карт?
-
+mixed_cards
+processing("\nКарты размешиваются")
 # игрок получает 2 карты, диллер получает 2 карты
 @player.add_card select_card
 @player.add_card select_card
@@ -69,7 +70,8 @@ end
 
 # открытие карт
 # подсчет результатов, объявление победителя
-puts "Внимание! Результаты!"
+processing("\nПосчет результатов")
+puts "\nВнимание! Результаты!"
 open_cards
 # предложение сыграть ещё, выход
 
