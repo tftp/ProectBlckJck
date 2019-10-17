@@ -1,5 +1,6 @@
-module MenuProcessing
+# frozen_string_literal: true
 
+module MenuProcessing
   def menu_for_player
     puts "\nСделай правильный выбор!"
     puts '1 - Пропустить ход'
@@ -11,7 +12,7 @@ module MenuProcessing
     puts "\nЖелаешь сыграть ещё, странник?"
     puts '1 - Да'
     puts '2 - Нет'
-    '1' == gets.chomp ? true : false
+    gets.chomp == '1'
   end
 
   def check_end_game?
@@ -19,21 +20,21 @@ module MenuProcessing
       puts "#{@dealer.name}  не может играть. Его банк = #{@dealer.bank}"
       return true
     end
-    unless @player.points.positive? && repeat_game?
-      puts "Твой банк = #{@player.bank}"
-      return true
-    end
+    return if @player.points.positive? && repeat_game?
+
+    puts "Твой банк = #{@player.bank}"
+    true
   end
 
   def choise_of_dealer
     count_of_cards = @dealer.cards.count
-    if @dealer.points < 17 && count_of_cards < 3
-      @dealer.add_card(select_card)
-      puts "\nИгрок #{@dealer.name} взял карту."
-      sleep 1
-      @player.points_of_cards SHOW
-      @dealer.points_of_cards HIDE
-    end
+    return unless @dealer.points < 17 && count_of_cards < 3
+
+    @dealer.add_card(select_card)
+    puts "\nИгрок #{@dealer.name} взял карту."
+    sleep 1
+    @player.points_of_cards SHOW
+    @dealer.points_of_cards HIDE
   end
 
   def open_cards
@@ -42,20 +43,20 @@ module MenuProcessing
     dealer_win if @player.points > 21 && @dealer.points <= 21
     player_win if @dealer.points > 21 && @player.points <= 21
     game_lose if @dealer.points > 21 && @player.points > 21
-    if @dealer.points <= 21 && @player.points <= 21
-      dealer_win if @dealer.points > @player.points
-      player_win if @dealer.points < @player.points
-      game_tie if @dealer.points == @player.points
-    end
+    return unless @dealer.points <= 21 && @player.points <= 21
+
+    dealer_win if @dealer.points > @player.points
+    player_win if @dealer.points < @player.points
+    game_tie if @dealer.points == @player.points
   end
 
   def dealer_win
-  puts "\nПобедил #{@dealer.name}"
-  sleep 1
-  puts "\nБанк игрока #{@player.name} = #{@player.bank}"
-  puts "Банк игрока #{@dealer.name} = #{@dealer.bank += @bank}"
-  @bank = 0
-  sleep 1
+    puts "\nПобедил #{@dealer.name}"
+    sleep 1
+    puts "\nБанк игрока #{@player.name} = #{@player.bank}"
+    puts "Банк игрока #{@dealer.name} = #{@dealer.bank += @bank}"
+    @bank = 0
+    sleep 1
   end
 
   def player_win
@@ -87,12 +88,11 @@ module MenuProcessing
 
   def processing(sign)
     print sign
-    40.times do
+    30.times do
       print '.'
       sleep 0.1
     end
     puts
     puts
   end
-
 end
