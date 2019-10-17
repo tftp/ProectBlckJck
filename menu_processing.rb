@@ -29,21 +29,33 @@ module MenuProcessing
       game_tie if @dealer.points == @player.points
     end
   end
-  
+
   def dealer_win
-  
+  puts "Победил #{@dealer.name}"
+  puts "Банк игрока #{@player.name} = #{@player.bank}"
+  puts "Банк игрока #{@dealer.name} = #{@dealer.bank += @bank}"
+  @bank = 0
   end
-  
+
   def player_win
-  
+    puts "Победил #{@player.name}"
+    puts "Банк игрока #{@player.name} = #{@player.bank += @bank}"
+    puts "Банк игрока #{@dealer.name} = #{@dealer.bank}"
+    @bank = 0
   end
-  
+
   def game_lose
-  
+    puts "Оба игрока проиграли!"
+    puts "Банк игрока #{@dealer.name} = #{@dealer.bank}"
+    puts "Банк игрока #{@dealer.name} = #{@dealer.bank}"
+    @bank = 0
   end
-  
+
   def game_tie
-  
+    puts "Ничья!"
+    puts "Банк игрока #{@dealer.name} = #{@dealer.bank += @bank / 2}"
+    puts "Банк игрока #{@dealer.name} = #{@dealer.bank += @bank / 2}"
+    @bank = 0
   end
 
 end
