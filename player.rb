@@ -10,7 +10,7 @@ class Player
 # может быть добавлена только одна карт
 # по достижении 3 карт карты вскрываются автоматически
 # когда карты открываются игрок видит карты диллера и их сумму очков и результат игры
-  attr_accessor :bank, :cards, :points
+  attr_accessor :bank, :cards, :points, :ace
   attr_reader :name
 
   def initialize(name)
@@ -18,6 +18,7 @@ class Player
     @cards = []
     @bank = 100
     @points = 0
+    @ace = 0
   end
 
 

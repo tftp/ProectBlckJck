@@ -9,7 +9,7 @@ class Diller
 # диллер может: пропустить ход если сумма очков 17 и более
 # диллер может: добавить карту если сумма очков меньше 17
 # может быть добавлена только одна карта
-  attr_accessor :bank, :cards, :points
+  attr_accessor :bank, :cards, :points, :ace
   attr_reader :name
 
   def initialize
@@ -17,6 +17,7 @@ class Diller
     @cards = []
     @bank = 100
     @points = 0
+    @ace = 0
   end
 
 end
